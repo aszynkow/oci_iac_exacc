@@ -5,7 +5,7 @@ resource "oci_database_vm_cluster" "test_vm_cluster" {
   exadata_infrastructure_id   = local.infra_id
   gi_version                  = var.vm_cluster_gi_version
   ssh_public_keys             = local.vm_cluster_ssh_public_keys
-  vm_cluster_network_id       = var.vm_cluster_network_id
+  vm_cluster_network_id       = local.vm_cluster_network_id
   data_storage_size_in_tbs    = var.vm_cluster_data_storage_size_in_tbs
   db_node_storage_size_in_gbs = var.vm_cluster_db_node_storage_size_in_gbs
   memory_size_in_gbs          = var.vm_cluster_memory_size_in_gbs

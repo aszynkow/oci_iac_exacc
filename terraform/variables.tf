@@ -25,8 +25,9 @@ variable "exadata_infrastructure_id" {
 }
 
 variable "vm_cluster_network_id" {
-  description = "VM cluster network OCID for the ExaCC VM cluster."
+  description = "Optional VM cluster network OCID for the ExaCC VM cluster. If omitted, the first network for the resolved ExaCC infrastructure is used."
   type        = string
+  default     = null
 }
 
 variable "vm_cluster_display_name" {

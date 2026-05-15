@@ -12,3 +12,9 @@ data "oci_database_db_servers" "db_servers" {
   compartment_id            = var.exacs_compartment_id
   exadata_infrastructure_id = local.infra_id
 }
+
+data "oci_database_vm_cluster_networks" "vm_cluster_networks" {
+  count                     = trimspace(coalesce(var.vm_cluster_network_id, "")) == "" ? 1 : 0
+  compartment_id            = var.exacs_compartment_id
+  exadata_infrastructure_id = local.infra_id
+}

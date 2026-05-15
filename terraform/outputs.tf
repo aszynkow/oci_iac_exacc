@@ -18,6 +18,11 @@ output "exadata_infrastructure_id" {
   value       = local.infra_id
 }
 
+output "vm_cluster_network_id" {
+  description = "Resolved ExaCC VM cluster network OCID used for the VM cluster."
+  value       = local.vm_cluster_network_id
+}
+
 output "availability_domain" {
   description = "Availability domain resolved by the AD1 data source."
   value       = local.availability_domain
