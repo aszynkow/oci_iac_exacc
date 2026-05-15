@@ -8,7 +8,7 @@ locals {
   vm_cluster_network_id                = local.provided_vm_cluster_network_id != "" ? local.provided_vm_cluster_network_id : local.discovered_vm_cluster_network_id
   availability_domain                  = data.oci_identity_availability_domain.AD1.name
   vm_cluster_compartment_id            = var.compartment_ocid
-  vm_cluster_ssh_public_keys           = compact([for key in split(",", var.vm_cluster_ssh_public_keys) : trimspace(key)])
+  vm_cluster_ssh_public_keys           = compact([for key in split(",", replace(replace(var.vm_cluster_ssh_public_keys, "\r", ""), "\n", ",")) : trimspace(key)])
   defined_tags                         = var.defined_tags
   freeform_tags = merge(
     {
