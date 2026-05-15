@@ -6,9 +6,11 @@ The stack source files live under [`terraform/`](terraform/).
 
 ## Resource Manager Stack
 
-The initial OCI Resource Manager stack package is available here:
+Deploy the initial OCI Resource Manager stack package:
 
-[downloads/release/0.0.1/oci_iac_exacc-rm-stack-0.0.1.zip](downloads/release/0.0.1/oci_iac_exacc-rm-stack-0.0.1.zip)
+[![Deploy to Oracle Cloud](https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/deploy-to-oracle-cloud.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?region=home&zipUrl=https://github.com/aszynkow/oci_iac_exacc/raw/main/downloads/release/0.0.1/oci_iac_exacc-rm-stack-0.0.1.zip)
+
+Release artifact: [downloads/release/0.0.1/oci_iac_exacc-rm-stack-0.0.1.zip](downloads/release/0.0.1/oci_iac_exacc-rm-stack-0.0.1.zip)
 
 The release folders are versioned so future Resource Manager stack packages can be published under new paths such as `downloads/release/0.0.2`.
 
