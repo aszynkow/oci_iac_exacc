@@ -19,8 +19,9 @@ variable "exacs_compartment_id" {
 }
 
 variable "exadata_infrastructure_id" {
-  description = "Exadata infrastructure OCID for the ExaCC VM cluster."
+  description = "Optional Exadata infrastructure OCID for the ExaCC VM cluster. If omitted, the first infrastructure in exacs_compartment_id is used."
   type        = string
+  default     = null
 }
 
 variable "vm_cluster_network_id" {

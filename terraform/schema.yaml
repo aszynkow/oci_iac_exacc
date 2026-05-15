@@ -77,9 +77,10 @@ variables:
 
   exadata_infrastructure_id:
     type: oci:database:exadatainfrastructure:id
-    required: true
+    required: false
     title: ExaCC Infrastructure
-    description: ExaCC infrastructure OCID for the VM cluster.
+    description: Optional ExaCC infrastructure OCID for the VM cluster. If omitted, the first infrastructure in the selected ExaCC Infrastructure Compartment is used.
+    default: ""
     dependsOn:
       compartmentId: ${exacs_compartment_id}
 
