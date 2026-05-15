@@ -194,5 +194,4 @@ variables:
     description: Paste SSH public keys or upload public key files for the ExaCC VM cluster.
     additionalProps:
       allowMultiple: true
-    default:
-      - ""
+    default: ""

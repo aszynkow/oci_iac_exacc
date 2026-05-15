@@ -13,7 +13,7 @@ resource "oci_database_cloud_vm_cluster" "test" {
   license_model                   = var.vm_cluster_license_model
   is_local_backup_enabled         = var.vm_cluster_is_local_backup_enabled
   is_sparse_diskgroup_enabled     = var.vm_cluster_is_sparse_diskgroup_enabled
-  ssh_public_keys                 = var.vm_cluster_ssh_public_keys
+  ssh_public_keys                 = local.vm_cluster_ssh_public_keys
   db_servers = [
     data.oci_database_db_servers.db_servers.db_servers[0].id,
     data.oci_database_db_servers.db_servers.db_servers[1].id
