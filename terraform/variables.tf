@@ -23,6 +23,11 @@ variable "cloud_exadata_infrastructure_id" {
   type        = string
 }
 
+variable "vm_cluster_vcn_id" {
+  description = "VCN OCID used to filter the client and backup subnet pickers in Resource Manager."
+  type        = string
+}
+
 variable "vm_cluster_backup_subnet_id" {
   description = "Backup subnet OCID for the ExaCC VM cluster."
   type        = string
