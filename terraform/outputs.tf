@@ -5,12 +5,12 @@ output "stack_name" {
 
 output "compartment_ocid" {
   description = "Target compartment OCID supplied to the stack."
-  value       = local.cloud_vm_cluster_compartment_id
+  value       = local.vm_cluster_compartment_id
 }
 
-output "cloud_vm_cluster_id" {
-  description = "OCID of the ExaCC cloud VM cluster."
-  value       = oci_database_cloud_vm_cluster.test.id
+output "vm_cluster_id" {
+  description = "OCID of the ExaCC VM cluster."
+  value       = oci_database_vm_cluster.test_vm_cluster.id
 }
 
 output "availability_domain" {

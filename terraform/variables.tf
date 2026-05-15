@@ -18,32 +18,14 @@ variable "exacs_compartment_id" {
   type        = string
 }
 
-variable "cloud_exadata_infrastructure_id" {
-  description = "Cloud Exadata infrastructure OCID for the VM cluster."
+variable "exadata_infrastructure_id" {
+  description = "Exadata infrastructure OCID for the ExaCC VM cluster."
   type        = string
 }
 
-variable "vm_cluster_vcn_id" {
-  description = "VCN OCID used to filter the client and backup subnet pickers in Resource Manager."
+variable "vm_cluster_network_id" {
+  description = "VM cluster network OCID for the ExaCC VM cluster."
   type        = string
-}
-
-variable "vm_cluster_backup_subnet_id" {
-  description = "Backup subnet OCID for the ExaCC VM cluster."
-  type        = string
-  default     = "ocid1.subnet.oc1.ap-sydney-1.aaaaaaaavlyovx3jevo5w3h2abqhn272bmazbusywbrqggwrg47hvx325ofa"
-}
-
-variable "vm_cluster_subnet_id" {
-  description = "Client subnet OCID for the ExaCC VM cluster."
-  type        = string
-  default     = "ocid1.subnet.oc1.ap-sydney-1.aaaaaaaahyaolzmux7eiy7ihe2tgyconfclthowvo2426xmvvdbkmoee64nq"
-}
-
-variable "vm_cluster_hostname" {
-  description = "Hostname prefix for the ExaCC VM cluster."
-  type        = string
-  default     = "tmptest1"
 }
 
 variable "vm_cluster_display_name" {

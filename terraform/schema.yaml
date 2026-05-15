@@ -16,13 +16,10 @@ variableGroups:
   - title: VM Cluster
     variables:
       - exacs_compartment_id
-      - cloud_exadata_infrastructure_id
-      - vm_cluster_vcn_id
-      - vm_cluster_subnet_id
-      - vm_cluster_backup_subnet_id
+      - exadata_infrastructure_id
+      - vm_cluster_network_id
       - compartment_ocid
       - vm_cluster_display_name
-      - vm_cluster_hostname
       - vm_cluster_cpu_core_count
       - vm_cluster_data_storage_size_in_tbs
       - vm_cluster_db_node_storage_size_in_gbs
@@ -78,54 +75,25 @@ variables:
     title: ExaCC Infrastructure Compartment
     description: Compartment used to find the existing ExaCC infrastructure and DB servers.
 
-  cloud_exadata_infrastructure_id:
+  exadata_infrastructure_id:
     type: oci:database:exadatainfrastructure:id
     required: true
-    title: Cloud Exadata Infrastructure
+    title: ExaCC Infrastructure
     description: ExaCC infrastructure OCID for the VM cluster.
     dependsOn:
       compartmentId: ${exacs_compartment_id}
 
-  vm_cluster_vcn_id:
-    type: oci:core:vcn:id
+  vm_cluster_network_id:
+    type: string
     required: true
-    title: VM Cluster VCN
-    description: VCN used to filter the client and backup subnet lists.
-    dependsOn:
-      compartmentId: ${exacs_compartment_id}
-
-  vm_cluster_subnet_id:
-    type: oci:core:subnet:id
-    required: true
-    title: Client Subnet OCID
-    description: Client subnet OCID for the ExaCC VM cluster.
-    default: ocid1.subnet.oc1.ap-sydney-1.aaaaaaaahyaolzmux7eiy7ihe2tgyconfclthowvo2426xmvvdbkmoee64nq
-    dependsOn:
-      compartmentId: ${exacs_compartment_id}
-      vcnId: ${vm_cluster_vcn_id}
-
-  vm_cluster_backup_subnet_id:
-    type: oci:core:subnet:id
-    required: true
-    title: Backup Subnet OCID
-    description: Backup subnet OCID for the ExaCC VM cluster.
-    default: ocid1.subnet.oc1.ap-sydney-1.aaaaaaaavlyovx3jevo5w3h2abqhn272bmazbusywbrqggwrg47hvx325ofa
-    dependsOn:
-      compartmentId: ${exacs_compartment_id}
-      vcnId: ${vm_cluster_vcn_id}
+    title: VM Cluster Network OCID
+    description: Existing ExaCC VM cluster network OCID to use for the VM cluster.
 
   vm_cluster_display_name:
     type: string
     required: true
     title: Display Name
     description: Display name for the ExaCC VM cluster.
-    default: tmptest1
-
-  vm_cluster_hostname:
-    type: string
-    required: true
-    title: Hostname
-    description: Hostname prefix for the ExaCC VM cluster.
     default: tmptest1
 
   vm_cluster_cpu_core_count:
@@ -137,21 +105,21 @@ variables:
 
   vm_cluster_data_storage_size_in_tbs:
     type: number
-    required: true
+    required: false
     title: Data Storage Size In TBs
     description: Data storage size in TBs for the ExaCC VM cluster.
     default: 3
 
   vm_cluster_db_node_storage_size_in_gbs:
     type: number
-    required: true
+    required: false
     title: DB Node Storage Size In GBs
     description: Database node storage size in GBs for the ExaCC VM cluster.
     default: 160
 
   vm_cluster_memory_size_in_gbs:
     type: number
-    required: true
+    required: false
     title: Memory Size In GBs
     description: Memory size in GBs for the ExaCC VM cluster.
     default: 60
@@ -165,7 +133,7 @@ variables:
 
   vm_cluster_license_model:
     type: enum
-    required: true
+    required: false
     title: License Model
     description: Oracle Database license model for the ExaCC VM cluster.
     default: BRING_YOUR_OWN_LICENSE
@@ -175,14 +143,14 @@ variables:
 
   vm_cluster_is_local_backup_enabled:
     type: boolean
-    required: true
+    required: false
     title: Enable Local Backup
     description: Whether local backup is enabled for the ExaCC VM cluster.
     default: false
 
   vm_cluster_is_sparse_diskgroup_enabled:
     type: boolean
-    required: true
+    required: false
     title: Enable Sparse Disk Group
     description: Whether sparse disk groups are enabled for the ExaCC VM cluster.
     default: false
