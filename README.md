@@ -146,7 +146,7 @@ Stack artifact: [downloads/release/0.0.1/oci_iac_exacc-rm-stack-0.0.1.zip](downl
      **Memory**, **Grid Infrastructure Version**.
    - **License Model** — `BRING_YOUR_OWN_LICENSE` or `LICENSE_INCLUDED`.
    - **Enable Local Backup** / **Enable Sparse Disk Group** *(optional)*.
-   - **SSH Public Keys** — paste at least one public key, one key per line.
+   - **SSH Public Keys** — choose `.pub` files or paste at least one public key.
    - Click **Next**.
 4. **Review** the plan summary, then click **Create**.
 5. Either tick **Run apply** on the create dialog, or open the new stack and
@@ -182,7 +182,7 @@ important ones:
 | `vm_cluster_license_model` | no | `BRING_YOUR_OWN_LICENSE` | `BRING_YOUR_OWN_LICENSE` or `LICENSE_INCLUDED`. |
 | `vm_cluster_is_local_backup_enabled` | no | `false` | Enable local backup. |
 | `vm_cluster_is_sparse_diskgroup_enabled` | no | `false` | Enable sparse disk groups. |
-| `vm_cluster_ssh_public_keys` | yes | — | One or more SSH public keys pasted one per line, or comma-separated. |
+| `vm_cluster_ssh_public_keys` | yes | — | One or more SSH public keys selected from `.pub` files or pasted as key values. |
 | `defined_tags` / `freeform_tags` | no | `{}` | Tags applied to the VM cluster. |
 
 ---

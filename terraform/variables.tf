@@ -91,8 +91,8 @@ variable "vm_cluster_is_sparse_diskgroup_enabled" {
 
 variable "vm_cluster_ssh_public_keys" {
   description = "SSH public keys authorized for the ExaCC VM cluster."
-  type        = string
-  default     = ""
+  type        = any
+  default     = []
 }
 
 variable "defined_tags" {

@@ -158,9 +158,10 @@ variables:
     default: false
 
   vm_cluster_ssh_public_keys:
-    type: text
+    type: oci:core:ssh:publickey
     required: true
     title: SSH Public Keys
-    description: Paste one or more SSH public keys for the ExaCC VM cluster. Use one key per line, or separate keys with commas.
-    multiline: true
-    default: ""
+    description: Choose SSH public key (.pub) files or paste SSH public key values for the ExaCC VM cluster.
+    additionalProps:
+      allowMultiple: true
+    default: [""]
