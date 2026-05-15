@@ -5,6 +5,14 @@ title: OCI IaC ExaCC
 description: Terraform scaffold for OCI Exadata Cloud@Customer automation.
 
 variableGroups:
+  - title: Hidden
+    visible: false
+    variables:
+      - tenancy_ocid
+      - region
+      - defined_tags
+      - freeform_tags
+
   - title: Exadata Infrastructure
     variables:
       - exacs_compartment_id
@@ -29,6 +37,38 @@ variableGroups:
       - vm_cluster_ssh_public_keys
 
 variables:
+  tenancy_ocid:
+    type: oci:identity:tenancy:id
+    required: false
+    visible: false
+    title: Tenancy OCID
+    description: OCI tenancy OCID.
+    default: ocid1.tenancy.oc1..aaaaaaaaiotpdtr5vjdvmgmmhd4ymcpkxm27gieclpqbdarwh4rz7z36xhgq
+
+  region:
+    type: string
+    required: false
+    visible: false
+    title: Region
+    description: OCI region identifier.
+    default: ap-sydney-1
+
+  defined_tags:
+    type: map
+    required: false
+    visible: false
+    title: Defined Tags
+    description: Defined tags to apply to supported OCI resources.
+    default: {}
+
+  freeform_tags:
+    type: map
+    required: false
+    visible: false
+    title: Freeform Tags
+    description: Freeform tags to apply to supported OCI resources.
+    default: {}
+
   compartment_ocid:
     type: oci:identity:compartment:id
     required: true
