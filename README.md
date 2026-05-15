@@ -2,6 +2,8 @@
 
 Terraform scaffold for OCI Exadata Cloud@Customer infrastructure automation.
 
+The stack source files live under [`terraform/`](terraform/).
+
 ## Resource Manager Stack
 
 The initial OCI Resource Manager stack package is available here:
@@ -12,7 +14,7 @@ The release folders are versioned so future Resource Manager stack packages can 
 
 ## Build The Stack Zip
 
-`rm_zip.sh` is a local helper script and is intentionally ignored by git. It builds a Resource Manager zip containing only Terraform files and `schema.yaml`.
+`rm_zip.sh` is a local helper script and is intentionally ignored by git. It builds a Resource Manager zip from `terraform/`, containing only Terraform files and `schema.yaml`.
 
 ```sh
 ./rm_zip.sh
