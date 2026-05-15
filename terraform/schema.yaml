@@ -79,10 +79,10 @@ variables:
     description: Compartment used to find the existing ExaCC infrastructure and DB servers.
 
   cloud_exadata_infrastructure_id:
-    type: oci:database:cloudexadatainfrastructure:id
+    type: oci:database:exadatainfrastructure:id
     required: true
     title: Cloud Exadata Infrastructure
-    description: Cloud Exadata infrastructure OCID for the VM cluster.
+    description: ExaCC infrastructure OCID for the VM cluster.
     dependsOn:
       compartmentId: ${exacs_compartment_id}
 
