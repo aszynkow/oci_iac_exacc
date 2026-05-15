@@ -9,10 +9,30 @@ variableGroups:
     variables:
       - tenancy_ocid
       - compartment_ocid
+      - exacs_compartment_id
       - region
-  - title: ExaCC
+
+  - title: Exadata Infrastructure
     variables:
-      - exacc_display_name
+      - cloud_exadata_infrastructure_id
+      - vm_cluster_subnet_id
+      - vm_cluster_backup_subnet_id
+      - vm_cluster_db_server_ids
+
+  - title: VM Cluster
+    variables:
+      - vm_cluster_display_name
+      - vm_cluster_hostname
+      - vm_cluster_cpu_core_count
+      - vm_cluster_data_storage_size_in_tbs
+      - vm_cluster_db_node_storage_size_in_gbs
+      - vm_cluster_memory_size_in_gbs
+      - vm_cluster_gi_version
+      - vm_cluster_license_model
+      - vm_cluster_is_local_backup_enabled
+      - vm_cluster_is_sparse_diskgroup_enabled
+      - vm_cluster_ssh_public_keys
+
   - title: Tags
     variables:
       - defined_tags
@@ -28,8 +48,14 @@ variables:
   compartment_ocid:
     type: oci:identity:compartment:id
     required: true
-    title: Compartment OCID
-    description: Compartment where ExaCC resources will be managed.
+    title: Default Compartment OCID
+    description: Default compartment where ExaCC resources will be managed.
+
+  exacs_compartment_id:
+    type: oci:identity:compartment:id
+    required: false
+    title: ExaCC Compartment OCID
+    description: Optional VM cluster compartment. If omitted, the default compartment is used.
 
   region:
     type: string
@@ -37,21 +63,127 @@ variables:
     title: Region
     description: OCI region identifier.
 
-  exacc_display_name:
+  cloud_exadata_infrastructure_id:
     type: string
     required: true
-    title: ExaCC Display Name
-    description: Display name for the Exadata Cloud@Customer deployment.
-    default: exacc
+    title: Cloud Exadata Infrastructure OCID
+    description: Cloud Exadata infrastructure OCID for the VM cluster.
+
+  vm_cluster_subnet_id:
+    type: oci:core:subnet:id
+    required: true
+    title: Client Subnet OCID
+    description: Client subnet OCID for the ExaCC VM cluster.
+    default: ocid1.subnet.oc1.ap-sydney-1.aaaaaaaahyaolzmux7eiy7ihe2tgyconfclthowvo2426xmvvdbkmoee64nq
+
+  vm_cluster_backup_subnet_id:
+    type: oci:core:subnet:id
+    required: true
+    title: Backup Subnet OCID
+    description: Backup subnet OCID for the ExaCC VM cluster.
+    default: ocid1.subnet.oc1.ap-sydney-1.aaaaaaaavlyovx3jevo5w3h2abqhn272bmazbusywbrqggwrg47hvx325ofa
+
+  vm_cluster_db_server_ids:
+    type: array
+    required: true
+    title: DB Server OCIDs
+    description: DB server OCIDs to place in the ExaCC VM cluster.
+    items:
+      type: string
+
+  vm_cluster_display_name:
+    type: string
+    required: true
+    title: Display Name
+    description: Display name for the ExaCC VM cluster.
+    default: tmptest1
+
+  vm_cluster_hostname:
+    type: string
+    required: true
+    title: Hostname
+    description: Hostname prefix for the ExaCC VM cluster.
+    default: tmptest1
+
+  vm_cluster_cpu_core_count:
+    type: number
+    required: true
+    title: CPU Core Count
+    description: Number of CPU cores enabled for the ExaCC VM cluster.
+    default: 4
+
+  vm_cluster_data_storage_size_in_tbs:
+    type: number
+    required: true
+    title: Data Storage Size In TBs
+    description: Data storage size in TBs for the ExaCC VM cluster.
+    default: 3
+
+  vm_cluster_db_node_storage_size_in_gbs:
+    type: number
+    required: true
+    title: DB Node Storage Size In GBs
+    description: Database node storage size in GBs for the ExaCC VM cluster.
+    default: 160
+
+  vm_cluster_memory_size_in_gbs:
+    type: number
+    required: true
+    title: Memory Size In GBs
+    description: Memory size in GBs for the ExaCC VM cluster.
+    default: 60
+
+  vm_cluster_gi_version:
+    type: string
+    required: true
+    title: Grid Infrastructure Version
+    description: Grid Infrastructure version for the ExaCC VM cluster.
+    default: 19.0.0.0
+
+  vm_cluster_license_model:
+    type: enum
+    required: true
+    title: License Model
+    description: Oracle Database license model for the ExaCC VM cluster.
+    default: BRING_YOUR_OWN_LICENSE
+    enum:
+      - BRING_YOUR_OWN_LICENSE
+      - LICENSE_INCLUDED
+
+  vm_cluster_is_local_backup_enabled:
+    type: boolean
+    required: true
+    title: Enable Local Backup
+    description: Whether local backup is enabled for the ExaCC VM cluster.
+    default: false
+
+  vm_cluster_is_sparse_diskgroup_enabled:
+    type: boolean
+    required: true
+    title: Enable Sparse Disk Group
+    description: Whether sparse disk groups are enabled for the ExaCC VM cluster.
+    default: false
+
+  vm_cluster_ssh_public_keys:
+    type: array
+    required: true
+    title: SSH Public Keys
+    description: SSH public keys authorized for the ExaCC VM cluster.
+    default:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCg2WY8V4RGgS1Q6yI3Yj8ZlQzZLfp4S17bcxUuXqiUF/MSDkroKI1qUBRrjjvBKvi/Yl2j7KGtCYxbjftGydlpjNO/iMQGSlf4gDTGUnFT0l/QnDdMtXg9GtTtrGrYuh8aXqjMWvF2dyt6MkH0em80rVoN0VC+pu7emjeVRoWPrWlh1TkchFvfpT+WtrT7nyDLDES1UEAaFEhGFZ+y8joHPe8iaumq2xAUVcTsF8Sd759F51qLpo814ivnfi/+W9e6Al6wtSoK7d0y+lvuSCWgbFdf12o+F4ZF04oJlMuRj2itzT1QztAFCzEpQk0KdRzsCO/d/mpV1gFREEFb8IBLI01w+gzqXv5EKIBHOiDZBvsNrXpFPcF5O+gyf2ay377zJ8cRVyJgo4rPr5vNSY/zGuE1Ttw6bnGc4xpuIdgl4txuEKJiaqtXYxhSxu2dtBeJHqCt62sLMkyOhq/kpW0mgr5N+jqUdGqnLqBtIbRZAcsShe8lVwCyfSvkbRiBNts= jason.grogan@dhcp-10-191-135-197.vpn.oracle.com
+    items:
+      type: string
 
   defined_tags:
     type: map
     required: false
     title: Defined Tags
     description: Defined tags to apply to supported OCI resources.
+    default: {}
 
   freeform_tags:
     type: map
     required: false
     title: Freeform Tags
     description: Freeform tags to apply to supported OCI resources.
+    default: {}
