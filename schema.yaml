@@ -1,0 +1,57 @@
+schemaVersion: 1.1.0
+version: "0.0.1"
+locale: en
+title: OCI IaC ExaCC
+description: Terraform scaffold for OCI Exadata Cloud@Customer automation.
+
+variableGroups:
+  - title: OCI Target
+    variables:
+      - tenancy_ocid
+      - compartment_ocid
+      - region
+  - title: ExaCC
+    variables:
+      - exacc_display_name
+  - title: Tags
+    variables:
+      - defined_tags
+      - freeform_tags
+
+variables:
+  tenancy_ocid:
+    type: oci:identity:tenancy:id
+    required: true
+    title: Tenancy OCID
+    description: OCI tenancy OCID.
+
+  compartment_ocid:
+    type: oci:identity:compartment:id
+    required: true
+    title: Compartment OCID
+    description: Compartment where ExaCC resources will be managed.
+
+  region:
+    type: string
+    required: true
+    title: Region
+    description: OCI region identifier.
+
+  exacc_display_name:
+    type: string
+    required: true
+    title: ExaCC Display Name
+    description: Display name for the Exadata Cloud@Customer deployment.
+    default: exacc
+
+  defined_tags:
+    type: map
+    required: false
+    title: Defined Tags
+    description: Defined tags to apply to supported OCI resources.
+
+  freeform_tags:
+    type: map
+    required: false
+    title: Freeform Tags
+    description: Freeform tags to apply to supported OCI resources.
