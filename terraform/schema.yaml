@@ -13,16 +13,13 @@ variableGroups:
       - defined_tags
       - freeform_tags
 
-  - title: Exadata Infrastructure
+  - title: VM Cluster
     variables:
       - exacs_compartment_id
       - cloud_exadata_infrastructure_id
       - vm_cluster_vcn_id
       - vm_cluster_subnet_id
       - vm_cluster_backup_subnet_id
-
-  - title: VM Cluster
-    variables:
       - compartment_ocid
       - vm_cluster_display_name
       - vm_cluster_hostname
