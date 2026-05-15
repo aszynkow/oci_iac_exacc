@@ -12,3 +12,8 @@ output "cloud_vm_cluster_id" {
   description = "OCID of the ExaCC cloud VM cluster."
   value       = oci_database_cloud_vm_cluster.test.id
 }
+
+output "availability_domain" {
+  description = "Availability domain resolved by the AD1 data source."
+  value       = local.availability_domain
+}

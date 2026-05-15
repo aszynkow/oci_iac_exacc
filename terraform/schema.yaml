@@ -17,7 +17,6 @@ variableGroups:
       - cloud_exadata_infrastructure_id
       - vm_cluster_subnet_id
       - vm_cluster_backup_subnet_id
-      - vm_cluster_db_server_ids
 
   - title: VM Cluster
     variables:
@@ -53,9 +52,9 @@ variables:
 
   exacs_compartment_id:
     type: oci:identity:compartment:id
-    required: false
+    required: true
     title: ExaCC Compartment OCID
-    description: Optional VM cluster compartment. If omitted, the default compartment is used.
+    description: Compartment used for the VM cluster and DB server lookup.
 
   region:
     type: string
@@ -82,14 +81,6 @@ variables:
     title: Backup Subnet OCID
     description: Backup subnet OCID for the ExaCC VM cluster.
     default: ocid1.subnet.oc1.ap-sydney-1.aaaaaaaavlyovx3jevo5w3h2abqhn272bmazbusywbrqggwrg47hvx325ofa
-
-  vm_cluster_db_server_ids:
-    type: array
-    required: true
-    title: DB Server OCIDs
-    description: DB server OCIDs to place in the ExaCC VM cluster.
-    items:
-      type: string
 
   vm_cluster_display_name:
     type: string

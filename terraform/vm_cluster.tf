@@ -1,7 +1,7 @@
 resource "oci_database_cloud_vm_cluster" "test" {
   backup_subnet_id                = var.vm_cluster_backup_subnet_id
   subnet_id                       = var.vm_cluster_subnet_id
-  cloud_exadata_infrastructure_id = var.cloud_exadata_infrastructure_id
+  cloud_exadata_infrastructure_id = local.infra_id
   hostname                        = var.vm_cluster_hostname
   display_name                    = var.vm_cluster_display_name
   compartment_id                  = local.cloud_vm_cluster_compartment_id
@@ -14,7 +14,10 @@ resource "oci_database_cloud_vm_cluster" "test" {
   is_local_backup_enabled         = var.vm_cluster_is_local_backup_enabled
   is_sparse_diskgroup_enabled     = var.vm_cluster_is_sparse_diskgroup_enabled
   ssh_public_keys                 = var.vm_cluster_ssh_public_keys
-  db_servers                      = var.vm_cluster_db_server_ids
-  defined_tags                    = local.defined_tags
-  freeform_tags                   = local.freeform_tags
+  db_servers = [
+    data.oci_database_db_servers.db_servers.db_servers[0].id,
+    data.oci_database_db_servers.db_servers.db_servers[1].id
+  ]
+  defined_tags  = local.defined_tags
+  freeform_tags = local.freeform_tags
 }

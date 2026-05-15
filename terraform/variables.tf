@@ -14,9 +14,8 @@ variable "region" {
 }
 
 variable "exacs_compartment_id" {
-  description = "Optional compartment OCID for the ExaCC VM cluster. If omitted, compartment_ocid is used."
+  description = "Compartment OCID for the ExaCC VM cluster and DB server lookup."
   type        = string
-  default     = null
 }
 
 variable "cloud_exadata_infrastructure_id" {
@@ -107,11 +106,6 @@ variable "vm_cluster_ssh_public_keys" {
   default = [
     "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCg2WY8V4RGgS1Q6yI3Yj8ZlQzZLfp4S17bcxUuXqiUF/MSDkroKI1qUBRrjjvBKvi/Yl2j7KGtCYxbjftGydlpjNO/iMQGSlf4gDTGUnFT0l/QnDdMtXg9GtTtrGrYuh8aXqjMWvF2dyt6MkH0em80rVoN0VC+pu7emjeVRoWPrWlh1TkchFvfpT+WtrT7nyDLDES1UEAaFEhGFZ+y8joHPe8iaumq2xAUVcTsF8Sd759F51qLpo814ivnfi/+W9e6Al6wtSoK7d0y+lvuSCWgbFdf12o+F4ZF04oJlMuRj2itzT1QztAFCzEpQk0KdRzsCO/d/mpV1gFREEFb8IBLI01w+gzqXv5EKIBHOiDZBvsNrXpFPcF5O+gyf2ay377zJ8cRVyJgo4rPr5vNSY/zGuE1Ttw6bnGc4xpuIdgl4txuEKJiaqtXYxhSxu2dtBeJHqCt62sLMkyOhq/kpW0mgr5N+jqUdGqnLqBtIbRZAcsShe8lVwCyfSvkbRiBNts= jason.grogan@dhcp-10-191-135-197.vpn.oracle.com"
   ]
-}
-
-variable "vm_cluster_db_server_ids" {
-  description = "DB server OCIDs to place in the ExaCC VM cluster."
-  type        = list(string)
 }
 
 variable "defined_tags" {
