@@ -4,7 +4,7 @@ variable "tenancy_ocid" {
 }
 
 variable "compartment_ocid" {
-  description = "Default OCI compartment OCID where ExaCC resources will be managed."
+  description = "Compartment OCID where the ExaCC VM cluster will be deployed."
   type        = string
 }
 
@@ -14,7 +14,7 @@ variable "region" {
 }
 
 variable "exacs_compartment_id" {
-  description = "Compartment OCID for the ExaCC VM cluster and DB server lookup."
+  description = "Compartment OCID for the existing ExaCC infrastructure and DB server lookup."
   type        = string
 }
 
